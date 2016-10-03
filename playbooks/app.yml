@@ -20,7 +20,7 @@
         region="{{ region_name }}"
         stack_name="TC-{{ stack_name }}"
         state=present
-        template="../templates/app.json"
+        template="./templates/app.json"
       args:
         template_parameters:
           KeyName: "{{ keyname }}"
@@ -40,8 +40,8 @@
     public_hostname: "{{ hostvars['localhost']['stack']['stack_outputs']['PublicDNS'] }}"
     ec2_hostname: "{{ hostvars['localhost']['stack']['stack_outputs']['ECSHostName'] }}"
   roles:
-    - nginx
     - common
+    - nginx
     - team
     - teamcity
 
