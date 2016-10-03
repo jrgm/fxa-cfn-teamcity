@@ -1,11 +1,11 @@
 ---
 
 - name: update installed packages
-  sudo: true
+  become: true
   yum: name=* state=latest
 
 - name: install base packages
-  sudo: true
+  become: true
   yum: name={{ item }} state=present
   with_items:
     - docker
@@ -15,36 +15,36 @@
     - python-pip
 
 - name: install docker-compose
-  sudo: true
+  become: true
   pip: name=docker-compose version=1.4.0 state=present
 
 - name: symlink docker-compose as fig
-  sudo: true
+  become: true
   file: src=/usr/local/bin/docker-compose dest=/usr/local/bin/fig state=link
 
 - name: ensure a docker group is created to allow running without sudo
-  sudo: true
+  become: true
   group: name=docker state=present
 
 - name: add ec2-user to the docker group
-  sudo: true
+  become: true
   user: name=ec2-user append=yes groups=docker
 
 - name: install nave
-  sudo: true
+  become: true
   get_url: url=https://raw.githubusercontent.com/isaacs/nave/v1.0.0/nave.sh
            dest=/usr/bin/nave
            checksum="sha1:0127fc1951d05daeb169c177da54ae780e5a74b2"
            mode=755
 
 - name: install node
-  sudo: true
+  become: true
   command: /usr/bin/nave usemain 4
   # TODO detect actual changes
   changed_when: false
 
 - name: start docker
-  sudo: true
+  become: true
   service: name=docker state=started enabled=true
 
 - meta: flush_handlers
