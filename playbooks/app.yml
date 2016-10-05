@@ -3,7 +3,7 @@
   connection: local
   gather_facts: false
   vars_files:
-    - "../env/{{ stack_name }}.yml"
+    - "./env/{{ stack_name }}.yml"
 
   tasks:
     - name: validate vars
@@ -36,13 +36,10 @@
   hosts: whatevs
   remote_user: ec2-user
   gather_facts: true
-  vars:
-    public_hostname: "{{ hostvars['localhost']['stack']['stack_outputs']['PublicDNS'] }}"
-    ec2_hostname: "{{ hostvars['localhost']['stack']['stack_outputs']['ECSHostName'] }}"
+  vars_files:
+    - "./env/{{ stack_name }}.yml"
   roles:
     - common
     - nginx
     - team
     - teamcity
-
-

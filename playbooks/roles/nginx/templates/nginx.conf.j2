@@ -22,9 +22,10 @@ http {
   keepalive_timeout  65;
   index   index.html index.htm;
 
-  # redirect http to https at some host header
+  # redirect http to https at some host header; optionally, override the
+  # redirect hostname.
   server {
     listen 80;
-    rewrite ^ https://$http_host$request_uri? permanent;
+    rewrite ^ https://{{ nginx_redirect_hostname | default("$http_host") }}$request_uri? permanent;
   }
 }

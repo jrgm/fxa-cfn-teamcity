@@ -14,7 +14,7 @@ Prequisites:
 * The AWS configuration requires an account in the cloudservice-aws-dev IAM (but could in principle be used in any IAM with changes where appropriate).
 * [Ansible](http://www.ansible.com/) needs to be installed on your client machine (but if you previously used [fxa-dev](https://github.com/mozilla/fxa-dev), you already have that set up.
 * You will also need to add an SSH key in the IAM for the region you will be using (but again, if you used fxa-dev, you already have (at least) one already). (Although note: keys from [identity-pubkeys](https://github.com/mozilla/identity-pubkeys) will be installed on the EC2 host for team access).
-* Create a file in `./env` like so, with a filename of *"yourboxname.yml"*:
+* Create a file in `./playbooks/env` like so, with a filename of *"yourboxname.yml"*:
 ```yaml
 ---
 keyname: yourkeyname
