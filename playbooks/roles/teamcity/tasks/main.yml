@@ -17,6 +17,7 @@
 - name: install github teamcity repo
   git: repo=https://github.com/jrgm-docker/teamcity.git
        dest=/home/ec2-user/teamcity
+       version=master
 
 - name: configure upstart for docker-compose
   become: true
