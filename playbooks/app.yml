@@ -20,7 +20,7 @@
         region="{{ region_name }}"
         stack_name="TC-{{ stack_name }}"
         state=present
-        template="./templates/app.json"
+        template="../templates/app.json"
       args:
         template_parameters:
           KeyName: "{{ keyname }}"
